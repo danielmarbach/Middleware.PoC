@@ -14,6 +14,9 @@ namespace EndpointA.Receiver
 
             endpointConfiguration.SendFailedMessagesTo("error");
 
+            var conventions = endpointConfiguration.Conventions();
+            conventions.DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith("Commands"));
+
             var endpoint = await Endpoint.Start(endpointConfiguration);
 
             Console.ReadLine();
