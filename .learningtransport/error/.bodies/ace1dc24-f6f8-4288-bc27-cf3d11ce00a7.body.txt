@@ -1,1 +1,0 @@
-<?xml version="1.0"?><DoX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/EndpointB.Receiver.Messages.Commands"><CustomerId>f6a7dc87-c330-4ae8-91e1-bd59b2c604d1</CustomerId></DoX>

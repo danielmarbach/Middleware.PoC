@@ -4,14 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using EndpointB.Receiver.Messages.Commands;
+using NServiceBus;
 
 namespace EndpointB.Facade.Controllers
 {
     public class HomeController : ApiController
     {
-        public Task Get()
+        private readonly IMessageSession _messageSession;
+
+        public HomeController(IMessageSession messageSession)
         {
-            return Task.CompletedTask;
+            _messageSession = messageSession;
+        }
+
+        public async Task Post(Guid orderId)
+        {
+            var msg = new DoY();
+            msg.OrderId = orderId;
+
+            await _messageSession.Send(msg);
+        }
+
+        public async Task Get(Guid orderId)
+        {
+            var msg = new VerifyY();
+            msg.OrderId = orderId;
+
+            await _messageSession.Send(msg);
         }
     }
 }

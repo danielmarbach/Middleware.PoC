@@ -21,7 +21,7 @@ namespace ApplicationA
             WebApp.Start<Startup>(baseUri);
 
             Console.WriteLine("\n\nPress a key to make a choice...");
-            Console.WriteLine("[1] Execute an action");
+            Console.WriteLine("[1] Execute DoX");
             Console.WriteLine("[x] Exit application");
 
             while (true)

@@ -53,14 +53,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\DoXHandler.cs" />
+    <Compile Include="Handlers\ReportOnYHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sagas\YSaga.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EndpointA.Receiver.Messages\EndpointA.Receiver.Messages.csproj">
+      <Project>{B0042E02-FB70-4BA5-9F18-15D78608B22B}</Project>
+      <Name>EndpointA.Receiver.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EndpointB.Receiver.Messages\EndpointB.Receiver.Messages.csproj">
       <Project>{FD5AAB73-8F13-457A-B598-DE51E1DED377}</Project>
       <Name>EndpointB.Receiver.Messages</Name>

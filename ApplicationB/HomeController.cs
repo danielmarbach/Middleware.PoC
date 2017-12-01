@@ -12,4 +12,13 @@ namespace ApplicationB
             return Task.CompletedTask;
         }
     }
+
+    public class VerifyController : ApiController
+    {
+        public Task Post(Guid orderId, string status)
+        {
+            Console.WriteLine($"{status}");
+            return Task.CompletedTask;
+        }
+    }
 }

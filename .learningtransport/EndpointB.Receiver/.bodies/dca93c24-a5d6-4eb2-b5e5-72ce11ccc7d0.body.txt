@@ -1,0 +1,1 @@
+<?xml version="1.0"?><ReportOnY xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/EndpointB.Receiver.Messages.Commands"><OrderId>a6ab8c74-851a-4102-a312-2e3abf34bbf0</OrderId><Status>Everything alright</Status></ReportOnY>
