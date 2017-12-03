@@ -93,7 +93,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EndpointB.Receiver.Messages\EndpointB.Receiver.Messages.csproj">
+    <ProjectReference Include="..\..\Middleware\EndpointB.Receiver.Messages\EndpointB.Receiver.Messages.csproj">
       <Project>{FD5AAB73-8F13-457A-B598-DE51E1DED377}</Project>
       <Name>EndpointB.Receiver.Messages</Name>
     </ProjectReference>

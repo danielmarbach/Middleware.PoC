@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationB", "Application
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Middleware", "Middleware", "{0E9CF2E7-81DD-4520-A2A2-C73CC8A53808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointA.Receiver", "EndpointA.Receiver\EndpointA.Receiver.csproj", "{02EFF044-D2DF-4282-A6F2-CED8E900181F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointA.Receiver", "Middleware\EndpointA.Receiver\EndpointA.Receiver.csproj", "{02EFF044-D2DF-4282-A6F2-CED8E900181F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointB.Receiver", "EndpointB.Receiver\EndpointB.Receiver.csproj", "{8AECCA42-E1E5-4D61-AF0F-7101EF1E7F00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointB.Receiver", "Middleware\EndpointB.Receiver\EndpointB.Receiver.csproj", "{8AECCA42-E1E5-4D61-AF0F-7101EF1E7F00}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASMX-Services", "ASMX-Services", "{C362EA8E-B80D-45EB-B4FB-74C995BBCC4A}"
 EndProject
@@ -19,9 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointA.Facade", "ASMX-Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointB.Facade", "ASMX-Services\EndpointB.Facade\EndpointB.Facade.csproj", "{CC18712D-C4C9-4AF9-8AA7-F1B0EF1ED740}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointA.Receiver.Messages", "EndpointA.Receiver.Messages\EndpointA.Receiver.Messages.csproj", "{B0042E02-FB70-4BA5-9F18-15D78608B22B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointA.Receiver.Messages", "Middleware\EndpointA.Receiver.Messages\EndpointA.Receiver.Messages.csproj", "{B0042E02-FB70-4BA5-9F18-15D78608B22B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointB.Receiver.Messages", "EndpointB.Receiver.Messages\EndpointB.Receiver.Messages.csproj", "{FD5AAB73-8F13-457A-B598-DE51E1DED377}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndpointB.Receiver.Messages", "Middleware\EndpointB.Receiver.Messages\EndpointB.Receiver.Messages.csproj", "{FD5AAB73-8F13-457A-B598-DE51E1DED377}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
