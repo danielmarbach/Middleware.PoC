@@ -8,7 +8,10 @@ namespace ApplicationA
 {
     class Program
     {
-        static readonly HttpClient httpClient = new HttpClient();
+        static readonly HttpClient httpClient = new HttpClient
+        {
+            BaseAddress = new Uri("http://localhost:18003")
+        };
 
         static async Task Main(string[] args)
         {
@@ -28,7 +31,7 @@ namespace ApplicationA
                 switch (key.Key)
                 {
                     case ConsoleKey.X:
-                        System.Environment.Exit(0);
+                        Environment.Exit(0);
                         continue;
                     case ConsoleKey.D1:
                         var customerId = Guid.NewGuid();
@@ -36,7 +39,6 @@ namespace ApplicationA
 
                         var requestUri = WebUtilities.AddQueryString("/api/home", "customerId", customerId.ToString());
 
-                        httpClient.BaseAddress = new Uri("http://localhost:18003");
                         var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
 
                         var response = await httpClient.SendAsync(request);

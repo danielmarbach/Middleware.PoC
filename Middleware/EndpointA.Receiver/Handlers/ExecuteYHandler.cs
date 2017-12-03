@@ -11,7 +11,11 @@ namespace EndpointA.Receiver.Handlers
 {
     public class ExecuteYHandler : IHandleMessages<ExecuteYRequest>
     {
-        private static HttpClient httpClient = new HttpClient();
+        private static HttpClient httpClient = new HttpClient
+        {
+            BaseAddress = new Uri("http://localhost:18001")
+        };
+
         static ILog log = LogManager.GetLogger<ExecuteYHandler>();
 
         public async Task Handle(ExecuteYRequest message, IMessageHandlerContext context)
@@ -23,7 +27,6 @@ namespace EndpointA.Receiver.Handlers
 
             await Task.Delay(5000); // simulate that ApplicationA is really slow.
 
-            httpClient.BaseAddress = new Uri("http://localhost:18001");
             var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
 
             var response = await httpClient.SendAsync(request);

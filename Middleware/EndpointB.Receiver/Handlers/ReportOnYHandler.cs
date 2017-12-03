@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using EndpointB.Receiver.Messages.Commands;
 using Microsoft.Owin.Infrastructure;
@@ -13,7 +11,10 @@ namespace EndpointB.Receiver.Handlers
 {
     class ReportOnYHandler : IHandleMessages<ReportOnY>
     {
-        static HttpClient httpClient = new HttpClient();
+        static HttpClient httpClient = new HttpClient
+        {
+            BaseAddress = new Uri("http://localhost:18002")
+        };
 
         static ILog log = LogManager.GetLogger<ReportOnYHandler>();
 
@@ -28,7 +29,6 @@ namespace EndpointB.Receiver.Handlers
                 {"status", message.Status }
             });
 
-            httpClient.BaseAddress = new Uri("http://localhost:18002");
             var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
 
             var response = await httpClient.SendAsync(request);

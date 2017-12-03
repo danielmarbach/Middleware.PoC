@@ -10,6 +10,11 @@ namespace EndpointB.Receiver.Handlers
 {
     class DoXHandler : IHandleMessages<DoX>
     {
+        static HttpClient httpClient = new HttpClient
+        {
+            BaseAddress = new Uri("http://localhost:18002")
+        };
+
         static ILog log = LogManager.GetLogger<DoXHandler>();
 
         public async Task Handle(DoX message, IMessageHandlerContext context)
@@ -19,18 +24,12 @@ namespace EndpointB.Receiver.Handlers
 
             var requestUri = WebUtilities.AddQueryString("/api/home", "customerId", message.CustomerId.ToString());
 
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri("http://localhost:18002");
-                var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
+            var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
 
-                var response = httpClient.SendAsync(request)
-                    .GetAwaiter()
-                    .GetResult();
+            var response = await httpClient.SendAsync(request);
 
-                Console.WriteLine($"\tReturned HTTP StatusCode: {response.StatusCode}");
-                response.EnsureSuccessStatusCode();
-            }
+            Console.WriteLine($"\tReturned HTTP StatusCode: {response.StatusCode}");
+            response.EnsureSuccessStatusCode();
         }
     }
 }

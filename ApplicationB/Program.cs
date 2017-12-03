@@ -8,7 +8,10 @@ namespace ApplicationB
 {
     class Program
     {
-        static readonly HttpClient httpClient = new HttpClient();
+        static readonly HttpClient httpClient = new HttpClient
+        {
+            BaseAddress = new Uri("http://localhost:18004") // EndpointB.Facade
+        };
 
         static async Task Main(string[] args)
         {
@@ -51,7 +54,6 @@ namespace ApplicationB
 
             var requestUri = WebUtilities.AddQueryString("/api/home", "orderId", orderId.ToString());
 
-            httpClient.BaseAddress = new Uri("http://localhost:18004"); // EndpointB.Facade
             var request = new HttpRequestMessage(httpMethod, requestUri);
 
             var response = await httpClient.SendAsync(request);
