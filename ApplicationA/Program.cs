@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.Owin.Hosting;
 using Microsoft.Owin.Infrastructure;
-using Newtonsoft.Json.Linq;
 
 namespace ApplicationA
 {
     class Program
     {
-        static void Main(string[] args)
+        static readonly HttpClient httpClient = new HttpClient();
+
+        static async Task Main(string[] args)
         {
             string baseUri = "http://localhost:18001";
 
@@ -34,23 +31,18 @@ namespace ApplicationA
                         System.Environment.Exit(0);
                         continue;
                     case ConsoleKey.D1:
-                        using (var httpClient = new HttpClient())
-                        {
-                            var customerId = Guid.NewGuid();
-                            Console.WriteLine($"\tSending customerId {customerId}");
+                        var customerId = Guid.NewGuid();
+                        Console.WriteLine($"\tSending customerId {customerId}");
 
-                            var requestUri = WebUtilities.AddQueryString("/api/home", "customerId", customerId.ToString());
+                        var requestUri = WebUtilities.AddQueryString("/api/home", "customerId", customerId.ToString());
 
-                            httpClient.BaseAddress = new Uri("http://localhost:18003");
-                            var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
+                        httpClient.BaseAddress = new Uri("http://localhost:18003");
+                        var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
 
-                            var response = httpClient.SendAsync(request)
-                                            .GetAwaiter()
-                                            .GetResult();
+                        var response = await httpClient.SendAsync(request);
 
-                            Console.WriteLine($"\tReturned HTTP StatusCode: {response.StatusCode}");
-                            response.EnsureSuccessStatusCode();
-                        }
+                        Console.WriteLine($"\tReturned HTTP StatusCode: {response.StatusCode}");
+                        response.EnsureSuccessStatusCode();
                         continue;
                 }
             }

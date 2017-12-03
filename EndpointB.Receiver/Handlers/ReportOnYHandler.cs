@@ -13,6 +13,8 @@ namespace EndpointB.Receiver.Handlers
 {
     class ReportOnYHandler : IHandleMessages<ReportOnY>
     {
+        static HttpClient httpClient = new HttpClient();
+
         static ILog log = LogManager.GetLogger<ReportOnYHandler>();
 
         public async Task Handle(ReportOnY message, IMessageHandlerContext context)
@@ -26,15 +28,12 @@ namespace EndpointB.Receiver.Handlers
                 {"status", message.Status }
             });
 
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri("http://localhost:18002");
-                var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
+            httpClient.BaseAddress = new Uri("http://localhost:18002");
+            var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
 
-                var response = await httpClient.SendAsync(request);
+            var response = await httpClient.SendAsync(request);
 
-                response.EnsureSuccessStatusCode();
-            }
+            response.EnsureSuccessStatusCode();
         }
     }
 }

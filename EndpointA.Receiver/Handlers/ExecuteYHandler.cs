@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using EndpointA.Receiver.Messages.Commands;
 using EndpointB.Receiver.Messages.Messages;
@@ -14,6 +11,7 @@ namespace EndpointA.Receiver.Handlers
 {
     public class ExecuteYHandler : IHandleMessages<ExecuteYRequest>
     {
+        private static HttpClient httpClient = new HttpClient();
         static ILog log = LogManager.GetLogger<ExecuteYHandler>();
 
         public async Task Handle(ExecuteYRequest message, IMessageHandlerContext context)
@@ -25,15 +23,12 @@ namespace EndpointA.Receiver.Handlers
 
             await Task.Delay(5000); // simulate that ApplicationA is really slow.
 
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri("http://localhost:18001");
-                var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
+            httpClient.BaseAddress = new Uri("http://localhost:18001");
+            var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
 
-                var response = await httpClient.SendAsync(request);
+            var response = await httpClient.SendAsync(request);
 
-                response.EnsureSuccessStatusCode();
-            }
+            response.EnsureSuccessStatusCode();
 
             var newMessage = new ExecuteYResponse {OrderId = message.OrderId};
             await context.Reply(newMessage);

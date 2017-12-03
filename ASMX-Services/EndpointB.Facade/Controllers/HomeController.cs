@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EndpointB.Receiver.Messages.Commands;
@@ -20,16 +17,14 @@ namespace EndpointB.Facade.Controllers
 
         public async Task Post(Guid orderId)
         {
-            var msg = new DoY();
-            msg.OrderId = orderId;
+            var msg = new DoY { OrderId = orderId };
 
             await _messageSession.Send(msg);
         }
 
         public async Task Get(Guid orderId)
         {
-            var msg = new VerifyY();
-            msg.OrderId = orderId;
+            var msg = new VerifyY { OrderId = orderId };
 
             await _messageSession.Send(msg);
         }

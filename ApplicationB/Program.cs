@@ -8,6 +8,8 @@ namespace ApplicationB
 {
     class Program
     {
+        static readonly HttpClient httpClient = new HttpClient();
+
         static async Task Main(string[] args)
         {
             string baseUri = "http://localhost:18002";
@@ -45,19 +47,16 @@ namespace ApplicationB
 
         private static async Task ContactFacade(HttpMethod httpMethod, Guid orderId)
         {
-            using (var httpClient = new HttpClient())
-            {
-                Console.WriteLine($"\tSending orderId {orderId}");
+            Console.WriteLine($"\tSending orderId {orderId}");
 
-                var requestUri = WebUtilities.AddQueryString("/api/home", "orderId", orderId.ToString());
+            var requestUri = WebUtilities.AddQueryString("/api/home", "orderId", orderId.ToString());
 
-                httpClient.BaseAddress = new Uri("http://localhost:18004"); // EndpointB.Facade
-                var request = new HttpRequestMessage(httpMethod, requestUri);
+            httpClient.BaseAddress = new Uri("http://localhost:18004"); // EndpointB.Facade
+            var request = new HttpRequestMessage(httpMethod, requestUri);
 
-                var response = await httpClient.SendAsync(request);
+            var response = await httpClient.SendAsync(request);
 
-                response.EnsureSuccessStatusCode();
-            }
+            response.EnsureSuccessStatusCode();
         }
     }
 }
