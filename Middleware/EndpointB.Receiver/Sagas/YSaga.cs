@@ -5,6 +5,7 @@ using EndpointB.Receiver.Messages.Commands;
 using EndpointB.Receiver.Messages.Messages;
 using NServiceBus;
 using NServiceBus.Logging;
+using NServiceBus.Sagas;
 
 namespace EndpointB.Receiver.Sagas
 {
@@ -79,5 +80,22 @@ namespace EndpointB.Receiver.Sagas
         }
 
         public class YTimeout { }
+    }
+
+    class SagaNotFoundHandler : IHandleSagaNotFound
+    {
+        public async Task Handle(object message, IMessageProcessingContext context)
+        {
+            if (message is VerifyY verify)
+            {
+                var msg = new ReportOnY
+                {
+                    OrderId = verify.OrderId,
+                    Status = $"\tDone\n\tFinished     : {true}"
+                };
+
+                await context.Send(msg);
+            }
+        }
     }
 }
