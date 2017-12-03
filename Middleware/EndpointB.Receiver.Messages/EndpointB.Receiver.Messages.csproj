@@ -42,9 +42,11 @@
   <ItemGroup>
     <Compile Include="Commands\DoX.cs" />
     <Compile Include="Commands\DoY.cs" />
+    <Compile Include="Commands\DoZSyncOverAsync.cs" />
     <Compile Include="Commands\ReportOnY.cs" />
     <Compile Include="Commands\VerifyY.cs" />
     <Compile Include="Messages\ExecuteYResponse.cs" />
+    <Compile Include="Messages\ZResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

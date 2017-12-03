@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\DoXHandler.cs" />
+    <Compile Include="Handlers\DoZSyncOverAsyncHandler.cs" />
     <Compile Include="Handlers\ReportOnYHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

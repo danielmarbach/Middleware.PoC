@@ -30,14 +30,18 @@ namespace EndpointA.Facade
         private IMessageSession BuildMessageSession()
         {
             var endpointConfiguration = new EndpointConfiguration("EndpointA.Facade");
-            endpointConfiguration.SendOnly();
 
             endpointConfiguration.UsePersistence<LearningPersistence>();
             var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
             routing.RouteToEndpoint(typeof(DoX).Assembly, "EndpointB.Receiver");
+            routing.RouteToEndpoint(typeof(DoZSyncOverAsync).Assembly, "EndpointB.Receiver");
 
             var conventions = endpointConfiguration.Conventions();
             conventions.DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith("Commands"));
+            conventions.DefiningMessagesAs(t => t.Namespace != null && t.Namespace.EndsWith("Messages"));
+
+            endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+            endpointConfiguration.EnableCallbacks();
 
             var endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
